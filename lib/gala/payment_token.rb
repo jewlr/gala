@@ -32,7 +32,7 @@ module Gala
 
       certificate = OpenSSL::X509::Certificate.new(certificate_pem)
       merchant_id = self.class.extract_merchant_id(certificate)
-      private_key = OpenSSL::PKey::EC.new(private_key_pem)
+      private_key = OpenSSL::PKey::RSA.new(private_key_pem)
       shared_secret = self.class.generate_shared_secret(private_key, ephemeral_public_key)
       symmetric_key = self.class.generate_symmetric_key(merchant_id, shared_secret)
 
